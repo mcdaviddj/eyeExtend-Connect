@@ -60,8 +60,10 @@ response = {}
 if EP_CONNECT_CLEARPASS_ID:
     # Check we have a Bearer token
     if P_BEARER_TOKEN:
+        # Percent encode session id
+        EP_CONNECT_CLEARPASS_ID_ENCODE = parse.quote(EP_CONNECT_CLEARPASS_ID, safe='')
         # Build Request
-        REAUTH_URL = f"https://{P_SERVER_ADDRESS}/api/session/{EP_CONNECT_CLEARPASS_ID}/reauthorize"
+        REAUTH_URL = f"https://{P_SERVER_ADDRESS}/api/session/{EP_CONNECT_CLEARPASS_ID_ENCODE}/reauthorize"
         # Header
         BEARER_HEADER = {"Authorization": "Bearer " + P_BEARER_TOKEN,
                          "Content-Type": "application/json",
